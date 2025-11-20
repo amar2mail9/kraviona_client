@@ -1,8 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Layout from "@/components/Layout";
-// import { SpeedInsights } from "@vercel/speed-insights/next";
-// import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import { ToastContainer } from "react-toastify";
 import ChatWidget from "@/components/ChatWidget";
 
@@ -92,6 +92,8 @@ export default function RootLayout({ children }) {
           <ChatWidget />
         </Layout>
 
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
