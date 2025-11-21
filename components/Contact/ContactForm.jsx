@@ -95,16 +95,16 @@ const ContactForm = () => {
           </ul>
 
           <div className="flex gap-5 mt-8 text-2xl sm:text-3xl flex-wrap">
-            <a href="https://facebook.com" target="_blank" className="text-[#1877F2] hover:scale-110 transition-transform">
+            <a href="https://www.facebook.com/profile.php?id=100084196255723" target="_blank" className="text-[#1877F2] hover:scale-110 transition-transform">
               <FaFacebook />
             </a>
-            <a href="https://instagram.com" target="_blank" className="text-[#E4405F] hover:scale-110 transition-transform">
+            <a href="https://www.instagram.com/kraviona" target="_blank" className="text-[#E4405F] hover:scale-110 transition-transform">
               <FaInstagram />
             </a>
-            <a href="https://youtube.com" target="_blank" className="text-[#FF0000] hover:scale-110 transition-transform">
+            <a href="https://www.youtube.com/@Kraviona1" target="_blank" className="text-[#FF0000] hover:scale-110 transition-transform">
               <FaYoutube />
             </a>
-            <a href="https://linkedin.com" target="_blank" className="text-[#0A66C2] hover:scale-110 transition-transform">
+            <a href="https://www.linkedin.com/in/amarkumar96085/" target="_blank" className="text-[#0A66C2] hover:scale-110 transition-transform">
               <FaLinkedin />
             </a>
           </div>

@@ -108,50 +108,32 @@ export default function Footer() {
             Connect With Us
           </h2>
 
-          <div className="flex space-x-5 text-xl">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              className="hover:text-blue-500 transition duration-200"
-            >
+          <div className="flex gap-5 mt-8 text-2xl sm:text-3xl flex-wrap">
+            <a href="https://www.facebook.com/profile.php?id=100084196255723" target="_blank" className="text-[#1877F2] hover:scale-110 transition-transform">
               <FaFacebook />
             </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              className="hover:text-blue-400 transition duration-200"
-            >
+            <a href="https://www.instagram.com/kraviona" target="_blank" className="text-[#E4405F] hover:scale-110 transition-transform">
+              <FaInstagram />
+            </a>
+            <a href="https://www.youtube.com/@Kraviona1" target="_blank" className="text-[#FF0000] hover:scale-110 transition-transform">
+              <FaYoutube />
+            </a>
+            <a href="https://www.linkedin.com/in/amarkumar96085/" target="_blank" className="text-[#0A66C2] hover:scale-110 transition-transform">
               <FaLinkedin />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              className="hover:text-sky-400 transition duration-200"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="https://github.com"
-              target="_blank"
-              className="hover:text-gray-500 transition duration-200"
-            >
-              <FaGithub />
             </a>
           </div>
 
           {/* Contact Details */}
           <div className="mt-5 text-sm space-y-2">
             <p>
-              📞 <span className="font-medium">+91 9801359854</span>
+              📞 <span className="font-medium">+91 9608553167</span>
             </p>
             <p>
               📧 <a href="mailto:contact@kraviona.com" className="hover:text-emerald-500 transition">
-                contact@kraviona.com
+                amar47kumar47@gmail.com
               </a>
             </p>
-            <p>
-              📍 Patna, Bihar, India
-            </p>
+
           </div>
         </motion.div>
 
