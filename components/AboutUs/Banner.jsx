@@ -1,54 +1,60 @@
 "use client";
 import { motion } from "framer-motion";
+import { Users } from "lucide-react";
 
 const AboutUsBanner = () => {
   return (
-    <section className="relative w-full h-[50vh] md:h-[420px] overflow-hidden"> {/* Responsive height */}
-      {/* ==== Background Image with Subtle Motion ==== */}
-      <motion.img
-        src="./about1.jpeg" // Ensure this image works well in a lighter context
-        alt="About Kraviona"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.8, ease: "easeInOut" }}
-        className="w-full h-full object-cover brightness-90" // Simplified for a cleaner look
-      />
+    <section className="relative w-full h-[50vh] md:h-[450px] flex items-center justify-center overflow-hidden bg-white px-6">
 
-      {/* ==== Light Overlay ==== */}
-      <div className="absolute inset-0 bg-white/90"></div> {/* Stronger overlay */}
+      {/* 1. Modern Tech Grid Background (Replaces heavy image) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:32px_32px]"></div>
 
-      {/* ==== Subtle Floating Lights (Responsive) ==== */}
+      {/* 2. Floating Ambient Glows (Emerald & Cyan - Consistent with Brand) */}
       <motion.div
-        animate={{ opacity: [0.3, 0.7, 0.3], scale: [1, 1.3, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-24 left-10 w-[200px] h-[200px] md:w-[300px] md:h-[300px] bg-emerald-100/50 rounded-full blur-3xl"
+        animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.2, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-10 left-10 w-[300px] h-[300px] bg-emerald-200/40 rounded-full blur-[100px] -z-10"
       />
       <motion.div
-        animate={{ opacity: [0.4, 0.8, 0.4], scale: [1.1, 0.9, 1.1] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-16 right-16 w-[250px] h-[250px] md:w-[350px] md:h-[350px] bg-purple-100/50 rounded-full blur-3xl"
+        animate={{ opacity: [0.3, 0.6, 0.3], scale: [1, 1.3, 1] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-10 right-10 w-[400px] h-[400px] bg-cyan-200/40 rounded-full blur-[100px] -z-10"
       />
 
-      {/* ==== Centered Content ==== */}
-      <div className="absolute inset-0 flex items-center justify-center text-center">
+      {/* 3. Centered Content */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="relative z-10 max-w-3xl mx-auto text-center"
+      >
+        {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="max-w-3xl mx-auto px-6"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-emerald-100 shadow-sm mb-6"
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#00cba9] to-[#00a7d1] drop-shadow-sm">
-            About Kraviona
-          </h1>
-
-          <p className="text-gray-700 text-lg md:text-xl leading-relaxed [text-shadow:_0_1px_2px_rgb(0_0_0_/_0.15)]"> {/* Removed box, added shadow */}
-            At <span className="text-emerald-600 font-semibold">Kraviona</span>,
-            we craft modern web experiences that merge innovation, design, and
-            technology. Our passionate team transforms ideas into engaging,
-            high-performance digital realities.
-          </p>
+          <Users className="w-4 h-4 text-emerald-500" />
+          <span className="text-xs font-bold text-emerald-800 tracking-wide uppercase">
+            Who We Are
+          </span>
         </motion.div>
-      </div>
+
+        {/* Main Heading */}
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-slate-900 tracking-tight">
+          About <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500">Kraviona</span>
+        </h1>
+
+        {/* Description */}
+        <p className="text-slate-500 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
+          We craft modern web experiences that merge <span className="font-semibold text-slate-700">innovation</span>, <span className="font-semibold text-slate-700">design</span>, and <span className="font-semibold text-slate-700">technology</span>.
+          Our passionate team transforms ideas into engaging, high-performance digital realities.
+        </p>
+      </motion.div>
+
+      {/* 4. Bottom Fade */}
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
     </section>
   );
 };

@@ -3,15 +3,17 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
-import { Phone, Mail } from "lucide-react";
+import { Phone, Mail, MapPin, Send } from "lucide-react";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
+// Assuming Spinner is in your components folder, keeping import same
 import { Spinner } from "../Spinner";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [service, setService] = useState(""); // Added state for dropdown
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -33,7 +35,8 @@ const ContactForm = () => {
             "Content-Type": "application/json",
             authorization: `Bearer ${Cookies.get("token")}`,
           },
-          body: JSON.stringify({ name, email, message }),
+          // Included 'service' in the payload
+          body: JSON.stringify({ name, email, message, service }),
         }
       );
 
@@ -49,11 +52,11 @@ const ContactForm = () => {
       setName("");
       setEmail("");
       setMessage("");
+      setService("");
       toast.success("Message sent successfully!");
-      setIsLoading(false);
-
     } catch (error) {
       toast.error(error.message || "Something went wrong!");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -63,113 +66,179 @@ const ContactForm = () => {
   }, []);
 
   return (
-    <section className="relative w-full min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 overflow-hidden">
+    <section className="relative w-full min-h-screen flex items-center justify-center py-24 px-4 sm:px-6 overflow-hidden bg-white">
 
-      {/* Background Effects */}
-      <div className="absolute top-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-emerald-100/70 blur-3xl rounded-full translate-x-20 sm:translate-x-40 -translate-y-20 sm:-translate-y-40 -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-cyan-100/70 blur-3xl rounded-full -translate-x-20 sm:-translate-x-40 translate-y-20 sm:translate-y-40 -z-10"></div>
+      {/* Modern Dot Pattern Background (Consistent with other pages) */}
+      <div className="absolute inset-0 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] -z-10"></div>
 
-      <div className="relative z-10 w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10">
+      {/* Gradient Blobs for depth */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00cba9]/10 blur-[120px] rounded-full -z-10"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-400/10 blur-[120px] rounded-full -z-10"></div>
 
-        {/* Contact Info */}
+      <div className="relative z-10 w-full max-w-6xl grid grid-cols-1 lg:grid-cols-5 gap-8 shadow-2xl rounded-3xl overflow-hidden bg-white border border-gray-100">
+
+        {/* Left Side: Contact Info (Darker Gradient for contrast) */}
         <motion.div
-          initial={{ x: -100, opacity: 0 }}
+          initial={{ x: -50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white text-gray-900 p-6 sm:p-10 rounded-2xl shadow-xl border border-gray-200 flex flex-col justify-center"
+          transition={{ duration: 0.6 }}
+          className="lg:col-span-2 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-10 flex flex-col justify-between relative overflow-hidden"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold mb-4">Contact Info</h2>
+          {/* Abstract circle decoration */}
+          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#00cba9] rounded-full blur-2xl opacity-20"></div>
 
-          <p className="text-gray-600 mb-6 text-sm sm:text-base">
-            Feel free to reach out for collaborations or any project discussion.
-          </p>
+          <div>
+            <h2 className="text-3xl font-bold mb-4">Let's Chat</h2>
+            <p className="text-slate-300 mb-8 text-sm leading-relaxed">
+              Have a project in mind? Fill out the form or reach out to us directly. We're here to turn your ideas into reality.
+            </p>
 
-          <ul className="space-y-3 text-base sm:text-lg text-gray-700">
-            <li className="flex items-center gap-3">
-              <Phone className="text-emerald-500" size={22} /> +91 9608553167
-            </li>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4">
+                <div className="p-3 bg-white/10 rounded-lg text-[#00cba9]">
+                  <Phone size={20} />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Phone</p>
+                  <p className="text-sm font-medium mt-1">+91 9608553167</p>
+                </div>
+              </li>
 
-            <li className="flex items-center gap-3">
-              <Mail className="text-emerald-500" size={22} /> amar47kumar47@gmail.com
-            </li>
-          </ul>
+              <li className="flex items-start gap-4">
+                <div className="p-3 bg-white/10 rounded-lg text-[#00cba9]">
+                  <Mail size={20} />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Email</p>
+                  <p className="text-sm font-medium mt-1">amar47kumar47@gmail.com</p>
+                </div>
+              </li>
 
-          <div className="flex gap-5 mt-8 text-2xl sm:text-3xl flex-wrap">
-            <a href="https://www.facebook.com/profile.php?id=100084196255723" target="_blank" className="text-[#1877F2] hover:scale-110 transition-transform">
-              <FaFacebook />
-            </a>
-            <a href="https://www.instagram.com/kraviona" target="_blank" className="text-[#E4405F] hover:scale-110 transition-transform">
-              <FaInstagram />
-            </a>
-            <a href="https://www.youtube.com/@Kraviona1" target="_blank" className="text-[#FF0000] hover:scale-110 transition-transform">
-              <FaYoutube />
-            </a>
-            <a href="https://www.linkedin.com/in/amarkumar96085/" target="_blank" className="text-[#0A66C2] hover:scale-110 transition-transform">
-              <FaLinkedin />
-            </a>
+              <li className="flex items-start gap-4">
+                <div className="p-3 bg-white/10 rounded-lg text-[#00cba9]">
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wider">Location</p>
+                  <p className="text-sm font-medium mt-1">Delhi, India</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div className="mt-12">
+            <p className="text-sm font-medium text-slate-400 mb-4">Follow us on</p>
+            <div className="flex gap-4">
+              {[
+                { icon: <FaFacebook size={20} />, link: "https://www.facebook.com/profile.php?id=100084196255723", color: "hover:text-[#1877F2]" },
+                { icon: <FaInstagram size={20} />, link: "https://www.instagram.com/kraviona", color: "hover:text-[#E4405F]" },
+                { icon: <FaYoutube size={20} />, link: "https://www.youtube.com/@Kraviona1", color: "hover:text-[#FF0000]" },
+                { icon: <FaLinkedin size={20} />, link: "https://www.linkedin.com/in/amarkumar96085/", color: "hover:text-[#0A66C2]" }
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-10 h-10 rounded-full bg-white/10 flex items-center justify-center transition-all duration-300 hover:bg-white hover:scale-110 ${social.color}`}
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
           </div>
         </motion.div>
 
-        {/* Contact Form */}
+        {/* Right Side: Contact Form */}
         <motion.div
-          initial={{ x: 100, opacity: 0 }}
+          initial={{ x: 50, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white p-6 sm:p-10 rounded-2xl shadow-xl border border-gray-200"
+          transition={{ duration: 0.6 }}
+          className="lg:col-span-3 bg-white p-8 sm:p-12"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-[#00cba9] mb-6">
-            Send a Message
+          <h2 className="text-3xl font-bold text-gray-900 mb-6">
+            Send a <span className="text-[#00cba9]">Message</span>
           </h2>
 
           {isLoading ? (
-            <Spinner />
+            <div className="flex flex-col items-center justify-center h-64">
+              <Spinner />
+              <p className="text-gray-400 text-sm mt-4">Sending your message...</p>
+            </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <input
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-                placeholder="Full Name"
-                className="w-full bg-gray-50 border border-gray-300 p-3 rounded-md focus:ring-2 outline-0 focus:ring-[#00cba9]"
-              />
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Your Name</label>
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="John Doe"
+                    className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:bg-white focus:ring-2 focus:ring-[#00cba9] focus:border-transparent outline-none transition-all duration-200"
+                  />
+                </div>
 
-              <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
-                placeholder="Email"
-                className="w-full bg-gray-50 border border-gray-300 p-3 rounded-md focus:ring-2 outline-0 focus:ring-[#00cba9]"
-              />
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700">Email Address</label>
+                  <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="john@example.com"
+                    className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:bg-white focus:ring-2 focus:ring-[#00cba9] focus:border-transparent outline-none transition-all duration-200"
+                  />
+                </div>
+              </div>
 
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                rows="5"
-                placeholder="Message"
-                className="w-full bg-gray-50 border border-gray-300 p-3 rounded-md focus:ring-2 outline-0 focus:ring-[#00cba9]"
-              ></textarea>
-              <select
-                className="w-full border border-gray-300 p-3 rounded-md bg-white focus:ring-2 focus:ring-[#00cba9] outline-none cursor-pointer "
-              >
-                <option value="" className="">Select Service</option>
-                <option value="web-development" >Web Development</option>
-                <option value="mobile-apps">Mobile Apps</option>
-                <option value="ui-ux-design">UI/UX Design</option>
-                <option value="digital-marketing">Digital Marketing</option>
-                <option value="cloud-solutions">Cloud Solutions</option>
-                <option value="graphic-design">Graphic Design</option>
-              </select>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">Interested Service</label>
+                <div className="relative">
+                  <select
+                    value={service} // BINDING STATE HERE
+                    onChange={(e) => setService(e.target.value)}
+                    className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:bg-white focus:ring-2 focus:ring-[#00cba9] focus:border-transparent outline-none appearance-none cursor-pointer transition-all duration-200 text-gray-600"
+                  >
+                    <option value="">Select a Service</option>
+                    <option value="web-development">Web Development</option>
+                    <option value="mobile-apps">Mobile Apps</option>
+                    <option value="ui-ux-design">UI/UX Design</option>
+                    <option value="digital-marketing">Digital Marketing</option>
+                    <option value="cloud-solutions">Cloud Solutions</option>
+                    <option value="graphic-design">Graphic Design</option>
+                  </select>
+                  {/* Custom Arrow Icon */}
+                  <div className="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-500">
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-700">Message</label>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows="4"
+                  placeholder="Tell us about your project..."
+                  className="w-full bg-gray-50 border border-gray-200 p-3.5 rounded-xl focus:bg-white focus:ring-2 focus:ring-[#00cba9] focus:border-transparent outline-none transition-all duration-200 resize-none"
+                ></textarea>
+              </div>
+
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full bg-[#00cba9] text-white py-3 rounded-md font-semibold hover:bg-[#00b99b] transition"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="w-full bg-[#00cba9] text-white py-4 rounded-xl font-bold text-lg shadow-lg shadow-[#00cba9]/30 hover:shadow-[#00cba9]/50 hover:bg-[#00b99b] transition-all duration-300 flex items-center justify-center gap-2"
               >
+                <Send size={20} />
                 Send Message
               </motion.button>
             </form>
           )}
         </motion.div>
+
       </div>
     </section>
   );

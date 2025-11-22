@@ -17,7 +17,7 @@ const Techstack = () => {
     { name: "JavaScript", icon: <IoLogoJavascript />, color: "#F7DF1E" },
     { name: "React", icon: <FaReact />, color: "#61DBFB" },
     { name: "Node.js", icon: <IoLogoNodejs />, color: "#3C873A" },
-    { name: "Express.js", icon: <SiExpress />, color: "#333333" }, // Changed color for light bg
+    { name: "Express.js", icon: <SiExpress />, color: "#000000" },
     { name: "MongoDB", icon: <SiMongodb />, color: "#4DB33D" },
     { name: "Python", icon: <FaPython />, color: "#3776AB" },
     { name: "Django", icon: <SiDjango />, color: "#092E20" },
@@ -25,58 +25,92 @@ const Techstack = () => {
     { name: "Spring Boot", icon: <SiSpringboot />, color: "#6DB33F" },
   ];
 
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } },
+  // Animation Variants for Container (Stagger Effect)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1, // Cards ek ke baad ek aayenge
+      },
+    },
+  };
+
+  // Animation for individual cards
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.8 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring", stiffness: 100 } },
   };
 
   return (
-    <div className="relative w-full flex scroll-smooth flex-col items-center justify-center overflow-hidden py-20 bg-gray-50">
-      {/* Light background glows */}
-      <div className="absolute w-[600px] h-[600px] bg-emerald-100/70 blur-[150px] rounded-full -top-40 -left-40 -z-10"></div>
-      <div className="absolute w-[400px] h-[400px] bg-cyan-100/70 blur-[150px] rounded-full bottom-0 right-0 -z-10"></div>
+    <div className="relative w-full py-24 overflow-hidden bg-white">
+      {/* Modern Dot Pattern Background */}
+      <div className="absolute inset-0 h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
 
-      <motion.h1
-        initial={{ y: -60, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        viewport={{ once: false, amount: 0.3 }}
-        className="relative z-10 text-4xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#00cba9] to-[#00a7d1] mb-16 text-center tracking-wide"
-      >
-        Technologies We Use
-      </motion.h1>
-
-      <section
-        className="relative z-10 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-8 px-6 max-w-7xl"
-      >
-        {Technology.map((tech, index) => (
-          <motion.div
-            key={index}
-            variants={cardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            whileHover={{
-              scale: 1.07,
-              boxShadow: `0px 10px 30px ${tech.color}40`, // Kept the colored shadow
-              transition: { duration: 0.3 },
-            }}
-            className="group relative flex flex-col items-center justify-center h-40 p-6 rounded-2xl cursor-pointer 
-                       bg-white border border-gray-200 
-                       shadow-lg transition-all duration-300 hover:border-[#00cba9]/40"
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="text-center mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight"
           >
-            <span
-              className="text-5xl mb-3 drop-shadow-lg transition-transform duration-300 group-hover:scale-110"
-              style={{ color: tech.color }}
+            Technologies We <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-cyan-500">Master</span>
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto"
+          >
+            Our stack is built for speed, scalability, and modern web standards.
+          </motion.p>
+        </div>
+
+        <motion.section
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6"
+        >
+          {Technology.map((tech, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ y: -5 }}
+              className="group relative flex flex-col items-center justify-center p-6 rounded-2xl bg-white/50 backdrop-blur-sm border border-gray-100 hover:border-gray-200 transition-all duration-300 shadow-sm hover:shadow-xl cursor-default overflow-hidden"
             >
-              {tech.icon}
-            </span>
-            <span className="text-gray-800 md:text-lg text-xs font-semibold tracking-wide">
-              {tech.name}
-            </span>
-          </motion.div>
-        ))}
-      </section>
+              {/* Hover Gradient Glow - specific to tech color */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500"
+                style={{ background: `radial-gradient(circle at center, ${tech.color}, transparent 70%)` }}
+              />
+
+              {/* Icon Container */}
+              <div
+                className="relative z-10 text-5xl mb-4 transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
+                style={{ color: tech.color }} // Using inline style for color
+              >
+                {tech.icon}
+              </div>
+
+              {/* Text */}
+              <h3 className="relative z-10 text-gray-700 font-medium text-sm md:text-base tracking-wide group-hover:text-gray-900">
+                {tech.name}
+              </h3>
+
+              {/* Bottom line indicator */}
+              <div
+                className="absolute bottom-0 left-0 w-full h-1 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+                style={{ backgroundColor: tech.color }}
+              />
+            </motion.div>
+          ))}
+        </motion.section>
+      </div>
     </div>
   );
 };

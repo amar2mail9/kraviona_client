@@ -128,9 +128,9 @@ export const SingleBlog = ({ slug }) => {
 
             {/* Popular Blogs Footer Area */}
             <div className="mt-16">
-                <div className="bg-gray-800 py-10">
+                <div className="bg-gray-50 py-10">
                     <div className="max-w-6xl mx-auto px-4">
-                        <h3 className="text-white text-2xl font-bold mb-6">Popular Reads</h3>
+
                         <PopularBlog />
                     </div>
                 </div>
