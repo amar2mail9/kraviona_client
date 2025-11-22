@@ -13,7 +13,7 @@ export const BlogLandingPage = () => {
 
 
     return <section>
-        <FeaturedPost />
+        {/* <FeaturedPost /> */}
         <PopularBlog />
         <hr className="text-gray-600" />
         <RecentBlogs />
