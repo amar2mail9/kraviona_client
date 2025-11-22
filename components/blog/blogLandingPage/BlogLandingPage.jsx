@@ -7,6 +7,11 @@ import BlogCategories from "./BlogCategories";
 
 
 export const BlogLandingPage = () => {
+
+
+
+
+
     return <section>
         <FeaturedPost />
         <PopularBlog />
