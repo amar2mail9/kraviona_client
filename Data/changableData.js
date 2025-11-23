@@ -15,6 +15,12 @@ export const menuList = [
     name: "Blog",
     link: '/blog',
     button: false
+  },
+
+  {
+    name: "Shop",
+    link: '/shop',
+    button: false
   }, {
     name: "About Us",
     link: "/about-us",
