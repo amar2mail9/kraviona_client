@@ -117,7 +117,7 @@ const Header = () => {
 
                     <div className="flex flex-col py-2">
                       <Link
-                        href="/my-account"
+                        href="/profile"
                         className="px-4 py-2 text-sm hover:bg-gray-100 transition rounded-lg"
                       >
                         My Account
