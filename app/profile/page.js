@@ -1,5 +1,12 @@
-const { MyAccount } = require("@/components/profile/MyAccount/MyAccount")
+import MyAccount from "@/components/profile/MyAccount/MyAccount"
+
+
+
 
 const profile = () => {
-    return <MyAccount />
+    return <>
+        <MyAccount />
+    </>
 }
+
+export default profile

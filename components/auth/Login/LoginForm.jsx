@@ -47,6 +47,8 @@ const LoginForm = () => {
             localStorage.setItem("user", JSON.stringify(data.user));
             router.push("/");
         } catch (err) {
+            console.log("user", err.message);
+
             toast.error(err.message);
         } finally {
             setIsLoading(false);
