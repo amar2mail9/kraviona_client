@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://kraviona.vercel.app/sitemap.xml
+Sitemap: https://kraviona.vercel.app/sitemap.xml/route.js
 Disallow: /api/admin
