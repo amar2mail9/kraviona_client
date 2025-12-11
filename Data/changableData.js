@@ -17,11 +17,12 @@ export const menuList = [
     button: false
   },
 
+  // {
+  //   name: "Shop",
+  //   link: '/shop',
+  //   button: false
+  // },
   {
-    name: "Shop",
-    link: '/shop',
-    button: false
-  }, {
     name: "About Us",
     link: "/about-us",
     button: false

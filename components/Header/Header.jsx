@@ -65,7 +65,7 @@ const Header = () => {
                 src="/favicon.ico"
                 alt="Kraviona"
                 loading="lazy"
-                className="w-10 h-10 object-contain"
+                className="w-14 h-14 rounded-full object-contain"
               />
               <div className="flex flex-col leading-tight">
                 <p className="text-gray-900 text-lg font-semibold">Kraviona</p>

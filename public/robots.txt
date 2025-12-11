@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://kraviona.vercel.app/sitemap.xml
+Disallow: /api/admin
